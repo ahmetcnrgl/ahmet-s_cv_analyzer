@@ -3,14 +3,15 @@ from sentence_transformers import SentenceTransformer
 from chromadb import PersistentClient
 from dotenv import load_dotenv
 from litellm import completion
+from pathlib import Path
 
 
 #constants
 load_dotenv(override=True)
-pdf= "cv.pdf"
+pdf = str(Path(__file__).parent.parent / "cv.pdf")
 embedding_model="all-MiniLM-L6-v2"
 collection_name="cv_text_embeddings"
-db_path = "cv_chromadb"
+db_path = Path(__file__).parent.parent / "native_chroma"
 model="groq/openai/gpt-oss-120b"
 
 #reading cv.pdf
@@ -35,7 +36,7 @@ def create_embeddings(chunks):
     embedder=SentenceTransformer(embedding_model)
     vectors = embedder.encode(chunks).tolist()
     
-    chroma=PersistentClient(path=db_path)
+    chroma=PersistentClient(path=str(db_path))
     if collection_name in [c.name for c in chroma.list_collections()]:
         chroma.delete_collection(collection_name)
     

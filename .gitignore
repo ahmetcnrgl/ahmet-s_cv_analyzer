@@ -1,0 +1,6 @@
+.env
+__pycache__/
+venv/
+native_chroma/
+langchain_db/
+cv_chromadb/

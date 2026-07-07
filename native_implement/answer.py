@@ -4,10 +4,11 @@ from chromadb import PersistentClient
 from dotenv import load_dotenv
 from litellm import completion
 from pydantic import BaseModel
+from pathlib import Path
 
 load_dotenv(override=True)
 model="groq/openai/gpt-oss-120b"
-db_path="cv_chromadb"
+db_path = Path(__file__).parent.parent / "native_chroma"
 collection_name="cv_text_embeddings"
 embedding_model="all-MiniLM-L6-v2"
 

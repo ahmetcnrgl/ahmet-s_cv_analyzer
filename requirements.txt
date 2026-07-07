@@ -4,3 +4,8 @@ chromadb
 python-dotenv
 litellm
 streamlit
+langchain-groq
+langchain-huggingface
+langchain-community
+langchain-text-splitters
+langchain-chroma
